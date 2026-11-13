@@ -1,0 +1,57 @@
+# Local infrastructure. Start: npm run infra:up (or it starts by itself with ./mvnw spring-boot:run).
+# PostGIS image is multi-arch (amd64 + arm64) — native speed on Apple Silicon.
+name: master-app
+services:
+  postgres:
+    image: imresamu/postgis:17-3.5-bookworm
+    environment:
+      POSTGRES_DB: masterapp
+      POSTGRES_USER: masterapp
+      POSTGRES_PASSWORD: masterapp
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    labels:
+      # Spring Boot treats this custom image as PostgreSQL
+      org.springframework.boot.service-connection: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U masterapp -d masterapp"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:8-alpine
+    ports:
+      - "6379:6379"
+    labels:
+      # not used by the API yet (rate limits and "online" status come later)
+      org.springframework.boot.ignore: "true"
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: masterapp
+      MINIO_ROOT_PASSWORD: masterapp-secret
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - miniodata:/data
+    labels:
+      org.springframework.boot.ignore: "true"
+
+  mailpit:
+    # catches e-mails with sign-up codes: http://localhost:8025
+    image: axllent/mailpit:latest
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    labels:
+      org.springframework.boot.ignore: "true"
+
+volumes:
+  pgdata:
+  miniodata:

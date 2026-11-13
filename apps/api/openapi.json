@@ -1,0 +1,153 @@
+{
+  "components" : {
+    "schemas" : {
+      "ApiProblem" : {
+        "properties" : {
+          "code" : {
+            "$ref" : "#/components/schemas/ErrorCode",
+            "description" : "branch on this"
+          },
+          "detail" : {
+            "description" : "human-readable; do not branch on it",
+            "type" : "string"
+          },
+          "instance" : {
+            "description" : "the request path",
+            "type" : "string"
+          },
+          "status" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "type" : {
+            "description" : "absent while it is about:blank",
+            "type" : "string"
+          }
+        },
+        "required" : [ "code", "detail", "instance", "status", "title" ],
+        "type" : "object"
+      },
+      "CategoryResponse" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "nameKk" : {
+            "type" : "string"
+          },
+          "nameRu" : {
+            "type" : "string"
+          },
+          "requiresReport" : {
+            "description" : "an order completes only after an inspection report is published",
+            "type" : "boolean"
+          },
+          "slug" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "nameKk", "nameRu", "requiresReport", "slug" ],
+        "type" : "object"
+      },
+      "CityResponse" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "nameKk" : {
+            "type" : "string"
+          },
+          "nameRu" : {
+            "type" : "string"
+          },
+          "slug" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "nameKk", "nameRu", "slug" ],
+        "type" : "object"
+      },
+      "ErrorCode" : {
+        "description" : "machine-readable reason of an error response",
+        "enum" : [ "INVALID_REQUEST", "AUTH_REQUIRED", "FORBIDDEN", "NOT_FOUND", "INTERNAL_ERROR" ],
+        "type" : "string"
+      }
+    },
+    "securitySchemes" : {
+      "bearerAuth" : {
+        "bearerFormat" : "JWT",
+        "scheme" : "bearer",
+        "type" : "http"
+      }
+    }
+  },
+  "info" : {
+    "description" : "REST API of the Master App mobile app and admin panel",
+    "title" : "Master App API",
+    "version" : "v1"
+  },
+  "openapi" : "3.1.0",
+  "paths" : {
+    "/api/v1/categories" : {
+      "get" : {
+        "operationId" : "listCategories",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/CategoryResponse"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "security" : [ ],
+        "summary" : "Service categories",
+        "tags" : [ "catalog" ]
+      }
+    },
+    "/api/v1/cities" : {
+      "get" : {
+        "operationId" : "listCities",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/CityResponse"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "security" : [ ],
+        "summary" : "Cities where the platform works",
+        "tags" : [ "catalog" ]
+      }
+    }
+  },
+  "security" : [ {
+    "bearerAuth" : [ ]
+  } ],
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "tags" : [ {
+    "description" : "Reference data: cities and categories",
+    "name" : "catalog"
+  } ]
+}

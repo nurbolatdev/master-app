@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Master APP",
+    "slug": "master-app",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "icon": "./assets/brand/icon.png",
+    "scheme": "masterapp",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.nurbolatdev.masterapp"
+    },
+    "android": {
+      "package": "com.nurbolatdev.masterapp",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/brand/adaptive-foreground.png",
+        "monochromeImage": "./assets/brand/adaptive-monochrome.png",
+        "backgroundColor": "#DC2626"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      "expo-localization",
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

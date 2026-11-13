@@ -1,0 +1,22 @@
+{
+  "name": "master-app",
+  "private": true,
+  "workspaces": [
+    "packages/api-types",
+    "apps/mobile",
+    "apps/admin"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev:admin": "npm run dev -w @master-app/admin",
+    "dev:mobile": "npm run start -w @master-app/mobile",
+    "infra:up": "docker compose -f infra/docker-compose.yml up -d",
+    "infra:down": "docker compose -f infra/docker-compose.yml down",
+    "api:run": "cd apps/api && ./mvnw spring-boot:run -Dspring-boot.run.profiles=seed",
+    "api:openapi": "cd apps/api && OPENAPI_UPDATE=true ./mvnw -B -q test -Dtest=OpenApiDocumentTests",
+    "api:types": "npm run api:openapi && npm run generate -w @master-app/api-types",
+    "check": "bash scripts/check.sh"
+  }
+}
