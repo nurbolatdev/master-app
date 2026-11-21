@@ -43,7 +43,6 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         ApiProblem: {
-            /** @description branch on this */
             code: components["schemas"]["ErrorCode"];
             /** @description human-readable; do not branch on it */
             detail: string;
