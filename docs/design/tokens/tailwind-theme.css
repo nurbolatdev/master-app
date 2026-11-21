@@ -1,0 +1,62 @@
+/* Master APP tokens for the admin panel (Tailwind v4). Generated from tokens.json. */
+@theme {
+  --color-bg: #f6f5f4;
+  --color-surface: #ffffff;
+  --color-surface-2: #efedeb;
+  --color-border: #e4e2df;
+  --color-border-strong: #8c8c94;
+  --color-ink: #18181b;
+  --color-ink-2: #52525b;
+  --color-ink-3: #66666e;
+  --color-action: #18181b;
+  --color-on-action: #ffffff;
+  --color-brand: #dc2626;
+  --color-brand-press: #b91c1c;
+  --color-on-brand: #ffffff;
+  --color-brand-text: #b91c1c;
+  --color-brand-tint: #fee2e2;
+  --color-success: #15803d;
+  --color-success-tint: #dcfce7;
+  --color-warning: #b45309;
+  --color-warning-tint: #fef3c7;
+  --color-trust: #1d4ed8;
+  --color-trust-tint: #dbeafe;
+  --color-star: #d97706;
+  --color-scrim: rgba(24, 24, 27, 0.48);
+  --color-map-bg: #e9e6e1;
+  --font-display: "Unbounded", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+}
+
+/* Dark theme: add class="dark" on <html>. */
+.dark {
+  --color-bg: #0f0f11;
+  --color-surface: #18181b;
+  --color-surface-2: #232327;
+  --color-border: #2e2e33;
+  --color-border-strong: #6b6b75;
+  --color-ink: #fafafa;
+  --color-ink-2: #a1a1aa;
+  --color-ink-3: #8b8b94;
+  --color-action: #fafafa;
+  --color-on-action: #18181b;
+  --color-brand: #dc2626;
+  --color-brand-press: #b91c1c;
+  --color-on-brand: #ffffff;
+  --color-brand-text: #f87171;
+  --color-brand-tint: #3b1414;
+  --color-success: #4ade80;
+  --color-success-tint: #0f2a1a;
+  --color-warning: #fbbf24;
+  --color-warning-tint: #2e2410;
+  --color-trust: #60a5fa;
+  --color-trust-tint: #13213d;
+  --color-star: #fbbf24;
+  --color-scrim: rgba(0, 0, 0, 0.64);
+  --color-map-bg: #1f1f23;
+}
